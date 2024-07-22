@@ -21,5 +21,7 @@ namespace DataLayer.Data
             StringLength((50), MinimumLength = (8), ErrorMessage = "La password deve contenere almeno 8 caratteri"),
         ]
         public string Password { get; set; }
+
+        public List<string> Roles { get; set; } = [];
     }
 }
