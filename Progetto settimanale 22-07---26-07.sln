@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progetto settimanale 22-07---26-07", "Progetto settimanale 22-07---26-07\Progetto settimanale 22-07---26-07.csproj", "{FEC997FD-101C-4D6B-9A61-260A403DF40D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{4F4A927C-2398-4FC6-85E3-C9C452EAF7CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FEC997FD-101C-4D6B-9A61-260A403DF40D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEC997FD-101C-4D6B-9A61-260A403DF40D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEC997FD-101C-4D6B-9A61-260A403DF40D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F4A927C-2398-4FC6-85E3-C9C452EAF7CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F4A927C-2398-4FC6-85E3-C9C452EAF7CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F4A927C-2398-4FC6-85E3-C9C452EAF7CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F4A927C-2398-4FC6-85E3-C9C452EAF7CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
