@@ -1,7 +1,26 @@
+using BusinessLayer;
+using BusinessLayer.Implementation;
+using BusinessLayer.Implementation.PasswordEncoder;
+using DataLayer;
+using DataLayer.SqlServer;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Data.Common;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services
+    .RegisterDAOs()
+    .AddScoped<DbContext>()
+    .AddScoped<IAccountService, AccountService>()
+    .AddScoped<IPasswordEncoder, NoOpPasswordEncoder>()
+    .AddControllersWithViews()
+    ;
+
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(opt => opt.LoginPath = "/Account/Login")
+    ;
 
 var app = builder.Build();
 
@@ -18,6 +37,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -9,14 +9,12 @@ namespace DataLayer
 {
     public interface IRoleDao
     {
-        RoleEntity Create (RoleEntity role);
+        RoleEntity Create (string roleName);
 
-        RoleEntity Update (int RoleId, RoleEntity role);
+        RoleEntity Delete (string roleName);
 
-        RoleEntity Delete (RoleEntity role);
+        RoleEntity Get (string roleName);
 
-        RoleEntity Get (int RoleId);
-
-        List<UserEntity> GetAll();
+        List<string> GetAll();
     }
 }

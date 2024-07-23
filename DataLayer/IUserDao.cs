@@ -17,5 +17,10 @@ namespace DataLayer
 
         UserEntity Get(int id);
 
+        UserEntity GetByUsername(string username);
+
+        public List<UserEntity> GetAll();
+
+        UserEntity? Login(string username);
     }
 }

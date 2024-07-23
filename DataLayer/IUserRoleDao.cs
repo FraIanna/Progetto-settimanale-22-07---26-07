@@ -9,8 +9,10 @@ namespace DataLayer
 {
     public interface IUserRoleDao
     {
-        UserRoleEntity Create (UserRoleEntity userRole); 
+        void Create (int userId, int roleId); 
 
-        UserRoleEntity Delete (int UserId, int RoleId);
+        void Delete (int userId, int roleId);
+
+        List<string> GetAllByUsername(string username);
     }
 }
