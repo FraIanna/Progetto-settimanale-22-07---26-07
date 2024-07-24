@@ -1,7 +1,6 @@
 ﻿using DataLayer.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace DataLayer.SqlServer
@@ -30,7 +29,7 @@ namespace DataLayer.SqlServer
                 var Id = (int)cmd.ExecuteScalar();
                 return user;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 logger.LogError(ex, "Exeptioon creating user");
                 throw;

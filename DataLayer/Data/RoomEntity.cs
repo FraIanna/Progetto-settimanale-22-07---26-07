@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DataLayer.Data
 {
@@ -15,8 +10,8 @@ namespace DataLayer.Data
         public int RoomNumber { get; set; }
 
         [
-            Display(Name = "Descrizione"), 
-            Required(ErrorMessage = "Inserisci la descrizione", AllowEmptyStrings = false), 
+            Display(Name = "Descrizione"),
+            Required(ErrorMessage = "Inserisci la descrizione", AllowEmptyStrings = false),
             StringLength(300)
         ]
         public string Description { get; set; }

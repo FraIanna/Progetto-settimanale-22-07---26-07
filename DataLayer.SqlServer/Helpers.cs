@@ -1,9 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer.SqlServer
 {
@@ -15,6 +10,11 @@ namespace DataLayer.SqlServer
                 .AddScoped<IUserDao, UserDao>()
                 .AddScoped<IRoleDao, RoleDao>()
                 .AddScoped<IUserRoleDao, UserRoleDao>()
+                .AddScoped<IServiceDao, ServiceDao>()
+                .AddScoped<IClientDao, ClientDao>()
+                .AddScoped<IBookingDao, BookingDao>()
+                .AddScoped<IBookingServiceDao, BookingServiceDao>()
+                .AddScoped<IRoomDao, RoomDao>()
                 ;
         }
     }

@@ -1,12 +1,6 @@
-﻿using DataLayer.Data;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer.SqlServer
 {
@@ -16,7 +10,7 @@ namespace DataLayer.SqlServer
 
         private const string INSERT_USERROLE = "INSERT INTO UsersRoles(UserId, RoleId) VALUES(@userId, @roleId)";
         private const string DELETE_USERROLE = "DELETE FROM UsersRoles WHERE UserId = @userId AND RoleId = @roleId";
-        private const string SELECT_BY_USERNAME = "SELECT ro.Name " + 
+        private const string SELECT_BY_USERNAME = "SELECT ro.Name " +
             "FROM UsersRoles ur " +
             "   JOIN Roles ro ON ur.RoleId = ro.Id " +
             "   JOIN Users us ON ur.UserId = us.Id " +

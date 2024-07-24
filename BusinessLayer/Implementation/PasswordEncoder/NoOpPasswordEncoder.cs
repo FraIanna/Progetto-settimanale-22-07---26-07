@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BusinessLayer.Implementation.PasswordEncoder
+﻿namespace BusinessLayer.Implementation.PasswordEncoder
 {
     public class NoOpPasswordEncoder : IPasswordEncoder
     {

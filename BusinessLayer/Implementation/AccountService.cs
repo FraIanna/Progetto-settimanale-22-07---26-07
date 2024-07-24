@@ -1,11 +1,6 @@
 ﻿using BusinessLayer.Data;
 using DataLayer.Data;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Implementation
 {
@@ -13,12 +8,12 @@ namespace BusinessLayer.Implementation
     {
         public AccountService
             (
-            DataLayer.DbContext dbContext, 
-            ILogger<BaseService> logger, 
+            DataLayer.DbContext dbContext,
+            ILogger<BaseService> logger,
             IPasswordEncoder passwordEncoder
-            ) : base(dbContext, logger) 
+            ) : base(dbContext, logger)
         {
-            _passwordEncoder = passwordEncoder; 
+            _passwordEncoder = passwordEncoder;
         }
 
         private readonly IPasswordEncoder _passwordEncoder;

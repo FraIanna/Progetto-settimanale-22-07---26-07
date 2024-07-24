@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DataLayer.Data
 {
     public class BookingServiceEntity
     {
         public int Id { get; set; }
-        public int IdPrenotazione { get; set; }
-        public int IdServizio { get; set; }
+        public int BookingId { get; set; }
+        public int ServiceId { get; set; }
 
         [Display(Name = "Data"), Required(ErrorMessage = "Inserisci la data")]
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Display(Name = "Quantità"), Required(ErrorMessage = "Inserisci la quantità")]
-        public int Amount { get; set; }
+        public int Quantity { get; set; }
 
         [Display(Name = "Prezzo"),
             Required(ErrorMessage = "Inserisci il prezzo")]

@@ -1,5 +1,4 @@
 ﻿using BusinessLayer;
-using DataLayer;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -29,10 +28,11 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
         public async Task<IActionResult> Login(AccountModel model)
         {
             var u = _accountService.Login(model.Username, model.Password);
-            if (u != null) {
+            if (u != null)
+            {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, u.Username) 
+                    new Claim(ClaimTypes.Name, u.Username)
                 };
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,

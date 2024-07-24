@@ -4,7 +4,6 @@ using BusinessLayer.Implementation.PasswordEncoder;
 using DataLayer;
 using DataLayer.SqlServer;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Data.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
