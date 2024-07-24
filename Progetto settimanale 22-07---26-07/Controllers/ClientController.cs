@@ -41,7 +41,7 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Exception retrieving client details for fiscal code = {FiscalCode}", fiscalCode);
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500);
             }
         }
 
@@ -58,7 +58,7 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
                 _clientDao.Create(client);
                 return RedirectToAction(nameof(Index));
             }
-            return View(AllClients);
+            return View(client);
         }
 
         public IActionResult EditClient(string fiscalCode)
@@ -82,7 +82,7 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
         public IActionResult DeleteClient(string fiscalCode)
         {
             ClientEntity client = _clientDao.Get(fiscalCode);
-            return View(AllClients);
+            return View(client);
         }
 
         [HttpPost, ActionName("Delete")]

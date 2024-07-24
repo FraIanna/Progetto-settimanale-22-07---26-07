@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DataLayer.Data.RoomEntity>
+
+@{
+    ViewData["Title"] = "AllRooms";
+}
+
+<h1>AllRooms</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                    <a asp-action="DetailRooms" asp-route-roomNumber="@item.RoomNumber">Dettagli</a> |
+                    <a asp-action="EditClient" asp-route-roomNumber="@item.RoomNumber">Modifica</a> |
+                    <a asp-action="DeleteClient" asp-route-roomNumber="@item.RoomNumber">Elimina</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

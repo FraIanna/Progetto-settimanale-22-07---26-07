@@ -4,7 +4,7 @@ namespace DataLayer
 {
     public interface IBookingDao
     {
-        BookingEntity Create(BookingEntity booking);
+        BookingEntity Create(int roomNumber, BookingEntity booking);
 
         BookingEntity Delete(int bookingId);
 

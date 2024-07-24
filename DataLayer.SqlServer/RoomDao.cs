@@ -73,15 +73,15 @@ namespace DataLayer.SqlServer
                 if (reader.Read())
                     return new RoomEntity
                     {
-                        RoomNumber = reader.GetInt32(0),
-                        Description = reader.GetString(1),
-                        Type = reader.GetBoolean(2)
+                        RoomNumber = reader.GetInt32(reader.GetOrdinal("NumeroCamera")),
+                        Description = reader.GetString(reader.GetOrdinal("Descrizione")),
+                        Type = reader.GetBoolean(reader.GetOrdinal("Tipologia"))
                     };
                 throw new Exception("Room not found");
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Exception reading room with number = {}", roomNumber);
+                logger.LogError(ex, "Exception reading room with number = {roomNumber}", roomNumber);
                 throw;
             }
         }
@@ -99,9 +99,9 @@ namespace DataLayer.SqlServer
                 {
                     result.Add(new RoomEntity
                     {
-                        RoomNumber = reader.GetInt32(0),
-                        Description = reader.GetString(1),
-                        Type = reader.GetBoolean(2)
+                        RoomNumber = reader.GetInt32(reader.GetOrdinal("NumeroCamera")),
+                        Description = reader.GetString(reader.GetOrdinal("Descrizione")),
+                        Type = reader.GetBoolean(reader.GetOrdinal("Tipologia"))
                     });
                 }
                 return result;

@@ -26,7 +26,7 @@ namespace DataLayer.SqlServer
                 Caparra = @Caparra, Tariffa = @Tax, TipologiaSoggiorno = @TypeOfStay 
             WHERE IdPrenotazione = @BookingId";
 
-        public BookingEntity Create(BookingEntity booking)
+        public BookingEntity Create(int roomNumber, BookingEntity booking)
         {
             try
             {
