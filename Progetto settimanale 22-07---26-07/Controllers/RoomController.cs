@@ -7,16 +7,16 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
     public class RoomController : Controller
     {
         private readonly ILogger<RoomController> _logger;
-        private readonly IRoomDao _roomDao;
-        public RoomController(IRoomDao roomDao, ILogger<RoomController> logger)
+        private readonly DbContext _dbContext;
+        public RoomController(DbContext dbContext, ILogger<RoomController> logger)
         {
-            _roomDao = roomDao;
+            _dbContext = dbContext;
             _logger = logger;
         }
 
         public IActionResult AllRooms()
         {
-            List<RoomEntity> rooms =  (List<RoomEntity>)_roomDao.GetAll();
+            List<RoomEntity> rooms =  (List<RoomEntity>)_dbContext.Rooms.GetAll();
             return View(rooms);
         }
 
@@ -24,7 +24,7 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
         {
             try
             {
-                var room = _roomDao.Get(roomNumber);
+                var room = _dbContext.Rooms.Get(roomNumber);
                 if (roomNumber == null)
                 {
                     return NotFound();

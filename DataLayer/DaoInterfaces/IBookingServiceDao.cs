@@ -1,6 +1,6 @@
 ﻿using DataLayer.Data;
 
-namespace DataLayer
+namespace DataLayer.DaoInterfaces
 {
     public interface IBookingServiceDao
     {

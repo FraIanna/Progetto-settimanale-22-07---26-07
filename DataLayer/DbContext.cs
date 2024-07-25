@@ -1,4 +1,6 @@
-﻿namespace DataLayer
+﻿using DataLayer.DaoInterfaces;
+
+namespace DataLayer
 {
     public class DbContext
     {

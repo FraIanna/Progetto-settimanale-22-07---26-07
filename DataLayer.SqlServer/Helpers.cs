@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DataLayer.DaoInterfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DataLayer.SqlServer
 {

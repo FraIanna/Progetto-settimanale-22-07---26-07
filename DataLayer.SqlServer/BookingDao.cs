@@ -1,4 +1,5 @@
-﻿using DataLayer.Data;
+﻿using DataLayer.DaoInterfaces;
+using DataLayer.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
@@ -131,6 +132,42 @@ namespace DataLayer.SqlServer
                         Tax = reader.GetDecimal(9),
                         TypeOfStay = reader.GetString(10)
                     });
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Exception reading bookings by client fiscal code");
+                throw;
+            }
+        }
+        
+        public BookingEntity GetOneBookingByFiscalCode(string clientFiscalCode)
+        {
+            var result = new BookingEntity();
+            try
+            {
+                using var conn = new SqlConnection(connectionString);
+                conn.Open();
+                using var cmd = new SqlCommand(SELECT_BOOKINGS_BY_CLIENT, conn);
+                cmd.Parameters.AddWithValue("@ClientFiscalCode", clientFiscalCode);
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    return new BookingEntity
+                    {
+                        BookingId = reader.GetInt32(0),
+                        ClientFiscalCode = reader.GetString(1),
+                        RoomNumber = reader.GetInt32(2),
+                        BookingDate = reader.GetDateTime(3),
+                        NumeroProgressivoAnno = reader.GetInt32(4),
+                        Year = reader.GetInt32(5),
+                        StartDate = reader.GetDateTime(6),
+                        EndDate = reader.GetDateTime(7),
+                        Caparra = reader.GetDecimal(8),
+                        Tax = reader.GetDecimal(9),
+                        TypeOfStay = reader.GetString(10)
+                    };
                 }
                 return result;
             }

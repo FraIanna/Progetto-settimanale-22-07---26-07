@@ -1,4 +1,5 @@
-﻿using DataLayer.Data;
+﻿using DataLayer.DaoInterfaces;
+using DataLayer.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Data.SqlClient;
@@ -12,16 +13,16 @@ namespace DataLayer.SqlServer
         }
 
         private const string INSERT_SERVICE = @"
-            INSERT INTO Service (IdServizio, Descrizione, Prezzo) 
+            INSERT INTO Services (IdServizio, Descrizione, Prezzo) 
             VALUES (@ServiceId, @Description, @Price)";
         private const string DELETE_SERVICE = "DELETE FROM Service WHERE IdServizio = @ServiceId";
-        private const string SELECT_SERVICE_BY_ID = "SELECT * FROM Service WHERE IdServizio = @ServiceId";
-        private const string SELECT_ALL_SERVICES = "SELECT * FROM Service";
+        private const string SELECT_SERVICE_BY_ID = "SELECT * FROM Services WHERE IdServizio = @ServiceId";
+        private const string SELECT_ALL_SERVICES = "SELECT * FROM Services";
         private const string UPDATE_SERVICE = @"
-            UPDATE Service 
+            UPDATE Services 
             SET Descrizione = @Description, Prezzo = @Price 
             WHERE IdServizio = @ServiceId";
-        public ServiceEntity Create(ServiceEntity service)
+        public ServiceDto Create(ServiceDto service)
         {
             try
             {

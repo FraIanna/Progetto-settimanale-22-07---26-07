@@ -1,4 +1,4 @@
-﻿namespace DataLayer
+﻿namespace DataLayer.DaoInterfaces
 {
     public interface IUserRoleDao
     {

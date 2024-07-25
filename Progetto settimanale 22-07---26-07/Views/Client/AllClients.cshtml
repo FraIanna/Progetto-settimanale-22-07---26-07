@@ -67,6 +67,7 @@
                 <a asp-action="ClientDetails" asp-route-FiscalCode="@item.FiscalCode">Dettagli</a> |
                 <a asp-action="EditClient" asp-route-FiscalCode="@item.FiscalCode">Modifica</a> |
                 <a asp-action="DeleteClient" asp-route-FiscalCode="@item.FiscalCode">Elimina</a>
+                <a asp-controller="Booking" asp-action="ClientBooking" asp-route-FiscalCode="@item.FiscalCode">Prenotazione del cliente</a>
             </td>
         </tr>
 }

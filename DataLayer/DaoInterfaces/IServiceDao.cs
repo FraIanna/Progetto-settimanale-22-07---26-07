@@ -1,10 +1,10 @@
 ﻿using DataLayer.Data;
 
-namespace DataLayer
+namespace DataLayer.DaoInterfaces
 {
     public interface IServiceDao
     {
-        ServiceEntity Create(ServiceEntity service);
+        ServiceDto Create(ServiceDto service);
 
         ServiceEntity Delete(int serviceId);
 

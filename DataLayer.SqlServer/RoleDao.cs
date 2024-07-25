@@ -1,4 +1,5 @@
-﻿using DataLayer.Data;
+﻿using DataLayer.DaoInterfaces;
+using DataLayer.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 

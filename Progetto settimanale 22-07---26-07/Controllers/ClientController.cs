@@ -6,18 +6,18 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
 {
     public class ClientController : Controller
     {
-        private readonly IClientDao _clientDao;
+        private readonly DbContext _dbContext;
         private readonly ILogger<ClientController> _logger;
 
-        public ClientController(IClientDao clientDao, ILogger<ClientController> logger)
+        public ClientController(DbContext dbContext, ILogger<ClientController> logger)
         {
-            _clientDao = clientDao;
+            _dbContext = dbContext;
             _logger = logger;
         }
 
         public IActionResult AllClients()
         {
-            List<ClientEntity> clients = (List<ClientEntity>)_clientDao.GetAll();
+            List<ClientEntity> clients = (List<ClientEntity>)_dbContext.Clients.GetAll();
             return View(clients);
         }
 
@@ -30,7 +30,7 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
             }
             try
             {
-                var client = _clientDao.Get(fiscalCode);
+                var client = _dbContext.Clients.Get(fiscalCode);
 
                 if (client == null)
                 {
@@ -40,7 +40,7 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Exception retrieving client details for fiscal code = {FiscalCode}", fiscalCode);
+                _logger.LogError(ex, "Exception retrieving client details for fiscal code = {}", fiscalCode);
                 return StatusCode(500);
             }
         }
@@ -55,7 +55,7 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
         {
             if (ModelState.IsValid)
             {
-                _clientDao.Create(client);
+                _dbContext.Clients.Create(client);
                 return RedirectToAction(nameof(Index));
             }
             return View(client);
@@ -63,7 +63,7 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
 
         public IActionResult EditClient(string fiscalCode)
         {
-            ClientEntity client = _clientDao.Get(fiscalCode);
+            ClientEntity client = _dbContext.Clients.Get(fiscalCode);
             return View();
         }
 
@@ -75,20 +75,20 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
                 return BadRequest();
             }
 
-            var updatedClient = _clientDao.Update(fiscalCode, client);
+            var updatedClient = _dbContext.Clients.Update(fiscalCode, client);
             return Ok(updatedClient);
         }
 
         public IActionResult DeleteClient(string fiscalCode)
         {
-            ClientEntity client = _clientDao.Get(fiscalCode);
+            ClientEntity client = _dbContext.Clients.Get(fiscalCode);
             return View(client);
         }
 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteClientConfirmed(string fiscalCode)
         {
-            _clientDao.Delete(fiscalCode);
+            _dbContext.Clients.Delete(fiscalCode);
             return RedirectToAction(nameof(Index));
         }
     }
