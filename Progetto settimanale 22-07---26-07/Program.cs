@@ -4,6 +4,7 @@ using BusinessLayer.Implementation.PasswordEncoder;
 using DataLayer;
 using DataLayer.SqlServer;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Progetto_settimanale_22_07___26_07;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,10 @@ builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(opt => opt.LoginPath = "/Account/Login")
     ;
+
+builder.Services.AddAuthorization(opt =>
+    opt.AddPolicy(Policies.isLogged, cfg => cfg.RequireAuthenticatedUser())
+);
 
 var app = builder.Build();
 

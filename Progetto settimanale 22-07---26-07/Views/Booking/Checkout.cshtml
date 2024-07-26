@@ -1,0 +1,67 @@
+﻿@model Progetto_settimanale_22_07___26_07.Models.CheckoutModel
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="row">
+    <h1>Checkout</h1>
+    <hr />
+    <div>
+        <dl class="row custom-container mx-5">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.RoomNumber)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.RoomNumber)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Tax)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Tax)
+            </dd>
+            <div class="mt-3">
+        <table class="table">
+            <h4>Servizi</h4>
+            <thead>
+                <tr>
+                    <th>Descrizione</th>
+                    <th>Quantità</th>
+                    <th>Prezzo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var service in Model.Services)
+                {
+                    <tr>
+                        <td>@service.Description</td>
+                        <td>@service.Quantity</td>
+                        <td>@service.Price.ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <h4>
+        @Html.DisplayNameFor(model => model.TotalImport)
+        </h4>
+        <p class="custom-p w-50">
+        @Model.TotalImport.ToString("C")
+        </p>
+        </div>
+        </dl>
+        <hr />
+    </div>
+</div>

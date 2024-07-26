@@ -4,33 +4,46 @@
     ViewData["Title"] = "DetailRooms";
 }
 
-<h1>DetailRooms</h1>
+<div class="row">
+    <h1>Dettagli Camera</h1>
+        <hr />
+    <div>
+        <dl class=" custom-container" id="lines">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.RoomNumber)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.RoomNumber)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+            <dd class = "col-sm-10" data-is-double="@Model.Type">
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-controller="Booking" asp-action="Booking" asp-route-roomNumber="@Model.RoomNumber" class="custom-link-btn">Prenota questa camera</a>
+        <a asp-action="AllRooms" class="custom-link-btn">Torna alle camere</a>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let rows = document.querySelectorAll('#lines');
+            rows.forEach(function (row) {
+                let isDoubleCell = row.querySelector('[data-is-double]');
+                let isDouble = isDoubleCell.getAttribute('data-is-double') === 'True';
 
-<div>
-    <h4>RoomEntity</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RoomNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RoomNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-controller="Booking" asp-action="Booking" asp-route-roomNumber="@Model.RoomNumber">Prenota questa camera</a>
-    <a asp-action="Index">Back to List</a>
-</div>
+                isDoubleCell.textContent = isDouble ? 'Doppia' : 'Singola';
+            });
+        });
+    </script>
+}

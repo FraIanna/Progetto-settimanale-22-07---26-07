@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Progetto_settimanale_22_07___26_07.Models;
 using System.Diagnostics;
 
 namespace Progetto_settimanale_22_07___26_07.Controllers
 {
+    [Authorize(Policies.isLogged)]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,6 +22,10 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
 
         public IActionResult Privacy()
         {
+            return View();
+        }
+
+        public IActionResult Search() {
             return View();
         }
 

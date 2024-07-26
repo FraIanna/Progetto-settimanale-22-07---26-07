@@ -4,38 +4,51 @@
     ViewData["Title"] = "AllRooms";
 }
 
-<h1>AllRooms</h1>
+<div class="row">
+    <h1>Gestione Camere</h1>
+    <hr />
+    <di class="custom-container">
+        <table class="table" id="roomTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td data-is-double="@item.Type">
+                </td>
+                <td>
+                    <a asp-action="DetailRooms" asp-route-roomNumber="@item.RoomNumber" class="custom-link-btn">Dettagli</a>
+                    <a asp-action="EditClient" asp-route-roomNumber="@item.RoomNumber" class="custom-link-btn">Modifica</a>
+                    <a asp-action="DeleteClient" asp-route-roomNumber="@item.RoomNumber" class="custom-link-btn">Elimina</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+        </table>
+    </di>
+</div>
+@section Scripts{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let rows = document.querySelectorAll('#roomTable tbody tr');
+            rows.forEach(function (row) {
+                let isDoubleCell = row.querySelector('[data-is-double]');
+                let isDouble = isDoubleCell.getAttribute('data-is-double') === 'True';
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                    <a asp-action="DetailRooms" asp-route-roomNumber="@item.RoomNumber">Dettagli</a> |
-                    <a asp-action="EditClient" asp-route-roomNumber="@item.RoomNumber">Modifica</a> |
-                    <a asp-action="DeleteClient" asp-route-roomNumber="@item.RoomNumber">Elimina</a>
-            </td>
-        </tr>
+                isDoubleCell.textContent = isDouble ? 'Doppia' : 'Singola';
+            });
+        });
+    </script>
 }
-    </tbody>
-</table>

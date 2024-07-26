@@ -19,6 +19,5 @@ namespace DataLayer.Data
         [Display(Name = "Tipologia"), Required]
         public bool Type { get; set; }
 
-
     }
 }

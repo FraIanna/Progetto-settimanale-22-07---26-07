@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Ricerca Prenotazioni";
+}
+<div class="row">
+    <div class="custom-container">
+    <h1>Ricerca Prenotazioni</h1>
+    <hr />
+        <h4>Ricerca per Codice Fiscale</h4>
+        <input type="text" id="fiscalCode" placeholder="Codice Fiscale" class="custom-form-control" />
+        <button id="searchByFiscalCode" class="custom-btn mt-4">Cerca</button>
+        <table id="bookingsTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Numero Prenotazione</th>
+                    <th>Data Inizio</th>
+                    <th>Data Fine</th>
+                    <th>Cliente</th>
+                    <th>Tipo Soggiorno</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    <div class="mt-5">
+        <h4>Numero Totale di Prenotazioni per Soggiorni di Tipo "Pensione Completa"</h4>
+        <button id="getTotalFullBoardBookings" class="custom-btn w-50">Mostra Numero Totale</button>
+        <p id="totalFullBoardBookings"></p>
+    </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#searchByFiscalCode').click(function () {
+                var fiscalCode = $('#fiscalCode').val();
+                $.ajax({
+                    url: '/api/BookingApi/GetBookingsByFiscalCode',
+                    type: 'GET',
+                    data: { typeOfStay: 'Pensione Completa' },
+                    success: function (data) {
+                        var tbody = $('#bookingsTable tbody');
+                        tbody.empty();
+                        if (data.length > 0) {
+                            $.each(data, function (index, booking) {
+                                tbody.append('<tr><td>' + booking.bookingId + '</td><td>' + booking.startDate + '</td><td>' + booking.endDate + '</td><td>' + booking.clientName + '</td><td>' + booking.tipoSoggiorno + '</td></tr>');
+                            });
+                        } else {
+                            tbody.append('<tr><td colspan="5">Nessuna prenotazione trovata.</td></tr>');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Errore durante la ricerca: ' + xhr.responseJSON.message);
+                    }
+                });
+            });
+
+            $('#getTotalFullBoardBookings').click(function () {
+                $.ajax({
+                    url: '/api/BookingApi/GetTotalFullBoardBookings',
+                    type: 'GET',
+                    success: function (data) {
+                        $('#totalFullBoardBookings').text('Numero totale di prenotazioni per soggiorni di tipo "pensione completa": ' + data.total);
+                    },
+                    error: function (xhr, status, error) {
+                        $('#totalFullBoardBookings').text('Errore durante la ricerca: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -3,6 +3,25 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bentornato!</h1>
+    <hr />
+    <div class="row gap-5 offset-1">
+        <div class="custom-container col-5">
+            <h3>Gestione Clienti e relative Prenotazioni</h3>
+            <hr />
+            <a asp-controller="Client" asp-action="AllClients" class="custom-link-btn">Vai</a>
+        </div>
+        <div class="custom-container col-5">
+            <h3>Gestione Camere</h3>
+            <hr />
+            <a asp-controller="Room" asp-action="AllRooms" class="custom-link-btn">Vai</a>
+        </div>
+    </div>
+    <div class="row pt-5 offset-4">
+        <div class="custom-container col-6">
+            <h3>Cerca Prenotazioni</h3>
+            <a asp-action="Search" class="custom-link-btn align-self-center">Cerca</a>
+        </div>
+    </div>
+        
 </div>

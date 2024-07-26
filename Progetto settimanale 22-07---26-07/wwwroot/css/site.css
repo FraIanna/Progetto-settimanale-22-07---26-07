@@ -18,5 +18,160 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: #6c4b35;
+
+}
+
+.row{
+    padding: 0 1.5em;
+}
+
+.container {
+    background-color: white;
+    border: none;
+    padding: 10px 0;
+    margin-top: 0;
+    min-height: 48vh;
+}
+
+.custom-container {
+    border: 3px solid #6d3109;
+    padding: 1em;
+    box-shadow: 5px 5px 2px #552200;
+}
+
+form {
+    border: 3px solid #6d3109;
+    padding: 1em;
+    box-shadow: 5px 5px 2px #552200;
+    display:flex;
+    flex-direction: column;
+}
+
+form button {
+    padding: .4em;
+    background-color: transparent;
+    color: #6d3109;
+    border: 2px solid #6d3109;
+    border-radius: 3px;
+    transition: all .15s linear;
+    width: 6em;
+    align-self: center;
+}
+
+.custom-btn {
+    padding: .4em;
+    background-color: transparent;
+    color: #6d3109;
+    border: 2px solid #6d3109;
+    border-radius: 3px;
+    transition: all .15s linear;
+    width: 6em;
+}
+
+.custom-link-btn {
+    padding: .25em 4em;
+    background-color: transparent;
+    color: #6d3109;
+    border: 2px solid #6d3109;
+    border-radius: 3px;
+    transition: all .15s linear;
+    text-decoration: none;
+
+}
+
+#booking-link {
+    width: 20em;
+}
+
+form button:hover, .custom-btn:hover, .custom-link-btn:hover {
+    background-color: #6d3109;
+    color: white;
+    border: 2px solid #6d3109;
+    border-radius: 3px;
+}
+
+.custom-group {
+    padding: .5em;
+    margin: 1em 0 ;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.custom-form-control{
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid;
+    transition: all .4s ease-in-out;
+}
+
+.custom-form-control:focus {
+    border-color: #6d3109
+}
+
+.custom-group .form-label, .control-label, .custom-p {
+    border: 3px dashed #6d3109;
+    padding: .25em;
+    font-size: 1.1em;
+    font-weight: 500;
+    font-style: italic
+}
+
+.table {
+    border-radius: 10px;
+    color: #6d3109;
+    border-bottom: none;
+}
+
+.table td {
+    border-right: 1px solid;
+}
+
+.table td .custom-link-btn{
+ padding: .25em;
+ font-weight: 500;
+}
+
+.table td:last-of-type {
+    padding: .5em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+    .table input {
+        background-color: #6d310999;
+        width: 3em;
+        outline: none;
+        border: none;
+        padding: 5px;
+    }
+
+dl dt{
+    border-bottom: 1px solid;
+}
+
+dl dd {
+    padding: .25em 0;
+    font-size: 1.1em;
+    font-weight: 500;
+    font-style: italic
+}
+
+.table td:last-of-type {
+    border-right: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(211, 211, 211, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(211, 211, 211);
 }

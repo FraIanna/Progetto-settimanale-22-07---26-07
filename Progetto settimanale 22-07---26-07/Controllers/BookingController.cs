@@ -1,10 +1,13 @@
 ﻿using DataLayer;
 using DataLayer.Data;
 using DataLayer.SqlServer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Progetto_settimanale_22_07___26_07.Models;
 
 namespace Progetto_settimanale_22_07___26_07.Controllers
 {
+    [Authorize(Policies.isLogged)]
     public class BookingController : Controller
     {
         private readonly ILogger<RoomController> _logger;
@@ -71,6 +74,34 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
                 _logger.LogError(ex, "Exception retrieving booking details for fiscal code = {}", FiscalCode);
                 return StatusCode(500);
             }
+        }
+
+        public IActionResult Checkout(int bookingId) 
+        {
+            var booking = _dbContext.Bookings.Get(bookingId);
+            var bookingServices = _dbContext.BookingsService.GetByBookingId(bookingId);
+
+            var services = bookingServices
+            .Select(bs => new ServiceDto
+            {
+                ServiceId = bs.ServiceId,
+                Description = _dbContext.Services.Get(bs.ServiceId).Description,
+                Price = bs.Price,
+                Quantity = bs.Quantity
+            })
+            .ToList();
+
+            var model = new CheckoutModel
+            {
+                BookingId = bookingId,
+                RoomNumber = booking.RoomNumber,
+                StartDate = booking.StartDate,
+                EndDate = booking.EndDate,
+                Tax = booking.Tax,
+                TotalImport = (booking.Tax - booking.Caparra + services.Sum(s => s.Price * s.Quantity)),
+                Services = services
+            };
+            return View(model);
         }
     }
 }

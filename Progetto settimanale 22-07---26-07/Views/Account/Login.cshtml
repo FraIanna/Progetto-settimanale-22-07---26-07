@@ -1,15 +1,16 @@
 ﻿@model AccountModel
-
-<h1>Login</h1>
-
-<form asp-action="Login">
-    <div class="input-group">
-        <label asp-for="Username" class="form-label"></label>
-        <input asp-for="Username" class="form-control" />
-    </div>
-    <div class="input-group">
-        <label asp-for="Password" class="form-label"></label>
-        <input asp-for="Password" class="form-control" />
-    </div>
-    <button class="btn btn-primary">Accedi</button>
-</form>
+<div class="col-md-6 offset-md-3">
+    <h1>Login</h1>
+    <hr />
+    <form asp-action="Login">
+        <div class="input-group custom-group">
+            <label asp-for="Username" class="form-label"></label>
+            <input asp-for="Username" class="custom-form-control" />
+        </div>
+        <div class="input-group custom-group">
+            <label asp-for="Password" class="form-label"></label>
+            <input asp-for="Password" class="custom-form-control" />
+        </div>
+        <button>Accedi</button>
+    </form>
+</div>

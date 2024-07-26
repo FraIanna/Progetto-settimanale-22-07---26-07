@@ -1,10 +1,12 @@
 ﻿using DataLayer;
 using DataLayer.Data;
 using DataLayer.SqlServer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Progetto_settimanale_22_07___26_07.Controllers
 {
+    [Authorize(Policies.isLogged)]
     public class BookingServiceController : Controller
     {
         private readonly DbContext _dbContext;
@@ -31,7 +33,7 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
             return View(services);
         }
 
-        [HttpPost("Booking/SaveSelectedServices")]
+        [HttpPost]
         public IActionResult SaveSelectedServices(int bookingId, List<ServiceDto> services)
         {
             var selectedServices = services.Where(s => s.Quantity > 0).ToList();

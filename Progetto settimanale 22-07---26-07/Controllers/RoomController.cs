@@ -1,9 +1,11 @@
 ﻿using DataLayer;
 using DataLayer.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Progetto_settimanale_22_07___26_07.Controllers
 {
+    [Authorize(Policies.isLogged)]
     public class RoomController : Controller
     {
         private readonly ILogger<RoomController> _logger;
