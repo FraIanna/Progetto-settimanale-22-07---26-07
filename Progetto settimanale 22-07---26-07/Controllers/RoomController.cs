@@ -39,5 +39,34 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
                 return StatusCode(500);
             }
         }
+
+        public IActionResult EditRoom(int roomNumber)
+        {
+            var room = _dbContext.Rooms.Get(roomNumber);
+            if (room == null)
+            {
+                return NotFound();
+            }
+            return View(room);
+        }
+
+        [HttpPost]
+        public IActionResult EditRoom(RoomEntity room) 
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _dbContext.Rooms.Update(room.RoomNumber, room);
+                    return RedirectToAction(nameof(AllRooms));
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Exception updating room with room number = {}", room.RoomNumber);
+                    return StatusCode(500);
+                }
+            }
+            return View(room);
+        }
     }
 }

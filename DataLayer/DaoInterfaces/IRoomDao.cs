@@ -12,6 +12,6 @@ namespace DataLayer.DaoInterfaces
 
         IEnumerable<RoomEntity> GetAll();
 
-        void Update(RoomEntity room);
+        RoomEntity Update(int roomNumber, RoomEntity roomEntity);
     }
 }

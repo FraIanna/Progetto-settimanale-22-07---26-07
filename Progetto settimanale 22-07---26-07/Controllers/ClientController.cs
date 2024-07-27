@@ -46,7 +46,7 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
                 return StatusCode(500);
             }
         }
-
+        
         public IActionResult CreateClient()
         {
             return View();
@@ -65,20 +65,31 @@ namespace Progetto_settimanale_22_07___26_07.Controllers
 
         public IActionResult EditClient(string fiscalCode)
         {
-            ClientEntity client = _dbContext.Clients.Get(fiscalCode);
-            return View();
+            var client = _dbContext.Clients.Get(fiscalCode);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            return View(client);
         }
 
-        [HttpPut("{FiscalCode}")]
-        public IActionResult UpdateClient(string fiscalCode, [FromBody] ClientEntity client)
+        [HttpPost]
+        public IActionResult EditClient(ClientEntity client)
         {
-            if (client == null || fiscalCode != client.FiscalCode)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+                try
+                {
+                    _dbContext.Clients.Update(client.FiscalCode, client);
+                    return RedirectToAction(nameof(AllClients));
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Exception updating client with fiscal code = {FiscalCode}", client.FiscalCode);
+                    return StatusCode(500);
+                }
             }
-
-            var updatedClient = _dbContext.Clients.Update(fiscalCode, client);
-            return Ok(updatedClient);
+            return View(client);
         }
 
         public IActionResult DeleteClient(string fiscalCode)

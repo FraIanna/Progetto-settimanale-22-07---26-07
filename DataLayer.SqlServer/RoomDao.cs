@@ -114,7 +114,7 @@ namespace DataLayer.SqlServer
             }
         }
 
-        public void Update(RoomEntity room)
+        public RoomEntity Update(int roomNumber, RoomEntity room)
         {
             try
             {
@@ -125,6 +125,7 @@ namespace DataLayer.SqlServer
                 cmd.Parameters.AddWithValue("@Description", room.Description);
                 cmd.Parameters.AddWithValue("@Type", room.Type);
                 cmd.ExecuteNonQuery();
+                return room;
             }
             catch (Exception ex)
             {
